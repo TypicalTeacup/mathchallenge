@@ -11,12 +11,17 @@ const canvasHeight = 200;
 
 //registerFont("font.ttf", { family: "impact" });
 
-app.get("/discordtest", (request,result) => {
-    console.log(request.headers)
+app.get("/discordtest", (request, result) => {
+    console.log(request.headers);
     result.redirect("/mathchallenge");
-})
+});
 
 app.get("/mathchallenge", (request, result) => {
+    const ua = request.headers["user-agent"];
+    if (ua.includes("Discordbot")) {
+        result.send();
+        return;
+    }
     const canvas = createCanvas(canvasWidth, canvasHeight);
     const ctx = canvas.getContext("2d");
     console.log(request.headers);
