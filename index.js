@@ -33,7 +33,7 @@ app.get("/mathchallenge", (request, result) => {
     const num1 = Math.floor(Math.random() * 20) + 10;
     let dividers = [];
     for (let i = 2; i < num1; i++) {
-        if (num1 % 1 == 0) dividers.push(i);
+        if (num1 % i == 0) dividers.push(i);
     }
     const num2 =
         dividers.length == 0
