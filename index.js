@@ -10,6 +10,9 @@ const canvasWidth = 550;
 const canvasHeight = 200;
 
 app.get("/mathchallenge", (request, result) => {
+    if (request.fresh){
+        result.sendStatus(304)
+    }
     const ua = request.headers["user-agent"];
     if (ua.includes("Discordbot")) {
         result.send();
@@ -49,7 +52,7 @@ app.get("/mathchallenge", (request, result) => {
 
     result
         .contentType("png")
-        .set("Cache-Control", `max-age=10, public`)
+        .set("Cache-Control", `max-age=157784630, private`)
         .status(200)
         .send(canvas.toBuffer("image/png"));
 });
