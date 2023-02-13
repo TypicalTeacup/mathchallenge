@@ -55,9 +55,10 @@ app.get("/mathchallenge", (request, result) => {
     const equationX = canvasWidth / 2 - ctx.measureText(equation).width / 2;
     ctx.strokeText(equation, equationX, 160);
 
+
     result
         .contentType("png")
-        .set("Cache-Control", "no-store")
+        .set("Cache-Control", `max-age=155520000`)
         .status(200)
         .send(canvas.toBuffer("image/png"));
 });
