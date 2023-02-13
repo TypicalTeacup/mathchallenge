@@ -43,3 +43,5 @@ app.get("/mathchallenge", (request, result) => {
 app.listen(80, () => {
     console.log("math challenge is running");
 });
+
+module.exports = app
