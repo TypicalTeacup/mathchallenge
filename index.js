@@ -9,7 +9,7 @@ const headerText = "Math challenge (99% fail):";
 const canvasWidth = 550;
 const canvasHeight = 200;
 
-app.get("/mathchallenge", (request, result) => {
+app.get("/", (request, result) => {
     if (request.fresh){
         result.sendStatus(304)
     }
