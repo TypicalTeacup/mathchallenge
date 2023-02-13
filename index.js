@@ -1,0 +1,45 @@
+const express = require("express");
+const app = express();
+const { createCanvas, registerFont, loadImage } = require("canvas");
+
+const headerText = "Math challenge (99% fail):";
+
+const canvasWidth = 550;
+const canvasHeight = 200;
+
+registerFont("font.ttf", { family: "impact" });
+
+app.get("/mathchallenge", (request, result) => {
+    const canvas = createCanvas(canvasWidth, canvasHeight);
+    const ctx = canvas.getContext("2d");
+
+    ctx.font = `45px impact`;
+    ctx.lineWidth = 2
+    ctx.fillStyle = `white`;
+    const headerX = canvasWidth/2 - (ctx.measureText(headerText).width/2);
+    ctx.strokeText(headerText, headerX, 60);
+
+    ctx.font = `90px impact`
+    ctx.lineWidth = 3
+    const num1 = Math.floor(Math.random()*20)+10
+    let dividers = [];
+    for (let i = 2; i < num1; i++) {
+        if (num1%1==0) dividers.push(i)
+    }
+    const num2 = dividers.length == 0 ? 1 : dividers[Math.floor(Math.random()*dividers.length)]
+    const num3 = Math.floor(Math.random()*30)+1
+    const equation = `${num1} / ${num2} + ${num3}`
+
+    const equationX = canvasWidth/2 - (ctx.measureText(equation).width/2);
+    ctx.strokeText(equation, equationX, 160);
+
+    result
+        .contentType("png")
+        .set("Cache-Control", "no-store")
+        .status(200)
+        .send(canvas.toBuffer("image/png"));
+});
+
+app.listen(80, () => {
+    console.log("math challenge is running");
+});
