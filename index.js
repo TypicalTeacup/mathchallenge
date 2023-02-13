@@ -14,10 +14,12 @@ const canvasHeight = 200;
 app.get("/mathchallenge", (request, result) => {
     const canvas = createCanvas(canvasWidth, canvasHeight);
     const ctx = canvas.getContext("2d");
+    console.log(request.headers);
+    console.log(request.baseUrl);
 
-    //background = 
-    ctx.fillStyle = "white"
-    ctx.fillRect(0,0,canvasWidth,canvasHeight)
+    //background =
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
     ctx.font = `45px impact`;
     ctx.lineWidth = 2;
@@ -38,6 +40,7 @@ app.get("/mathchallenge", (request, result) => {
             : dividers[Math.floor(Math.random() * dividers.length)];
     const num3 = Math.floor(Math.random() * 30) + 1;
     const equation = `${num1} / ${num2} + ${num3}`;
+    console.log(`equation: ${equation}`);
 
     const equationX = canvasWidth / 2 - ctx.measureText(equation).width / 2;
     ctx.strokeText(equation, equationX, 160);
