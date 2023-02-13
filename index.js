@@ -58,7 +58,7 @@ app.get("/mathchallenge", (request, result) => {
 
     result
         .contentType("png")
-        .set("Cache-Control", `max-age=155520000`)
+        .set("Cache-Control", `max-age=155520000, public`)
         .status(200)
         .send(canvas.toBuffer("image/png"));
 });
