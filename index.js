@@ -10,8 +10,8 @@ const canvasWidth = 550;
 const canvasHeight = 200;
 
 app.get("/", (request, result) => {
-    if (request.fresh){
-        result.sendStatus(304)
+    if (request.fresh) {
+        result.sendStatus(304);
     }
     const ua = request.headers["user-agent"];
     if (ua.includes("Discordbot")) {
@@ -43,12 +43,12 @@ app.get("/", (request, result) => {
             ? 1
             : dividers[Math.floor(Math.random() * dividers.length)];
     const num3 = Math.floor(Math.random() * 30) + 1;
-    const equation = `${num1} / ${num2} + ${num3}`;
+    const equation =
+        Math.random() < 0.01 ? "9 + 10" : `${num1} / ${num2} + ${num3}`;
     console.log(`equation: ${equation}`);
 
     const equationX = canvasWidth / 2 - ctx.measureText(equation).width / 2;
     ctx.strokeText(equation, equationX, 160);
-
 
     result
         .contentType("png")
