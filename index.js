@@ -4,15 +4,14 @@ const { createCanvas, GlobalFonts } = require("@napi-rs/canvas");
 
 GlobalFonts.registerFromPath(__dirname + "/font.ttf", "impact");
 
+app.disable("etag");
+
 const headerText = "Math challenge (99% fail):";
 
 const canvasWidth = 550;
 const canvasHeight = 200;
 
 app.get("/", (request, result) => {
-    if (request.fresh) {
-        result.sendStatus(304);
-    }
     const ua = request.headers["user-agent"];
     if (ua.includes("Discordbot")) {
         result.send();
@@ -45,14 +44,14 @@ app.get("/", (request, result) => {
     const num3 = Math.floor(Math.random() * 30) + 1;
     const equation =
         Math.random() < 0.021 ? "9 + 10" : `${num1} / ${num2} + ${num3}`;
-    console.log(`equation: ${equation}`);
 
     const equationX = canvasWidth / 2 - ctx.measureText(equation).width / 2;
     ctx.strokeText(equation, equationX, 160);
 
     result
         .contentType("png")
-        .set("Cache-Control", `max-age=157784630, private`)
+        .set("Cache-Control", `max-age=604800, private`)
+        .set("Expires", new Date(Date.now()+ 604800000).toUTCString())
         .status(200)
         .send(canvas.toBuffer("image/png"));
 });
