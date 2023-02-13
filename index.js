@@ -15,6 +15,10 @@ app.get("/mathchallenge", (request, result) => {
     const canvas = createCanvas(canvasWidth, canvasHeight);
     const ctx = canvas.getContext("2d");
 
+    //background = 
+    ctx.fillStyle = "white"
+    ctx.fillRect(0,0,canvasWidth,canvasHeight)
+
     ctx.font = `45px impact`;
     ctx.lineWidth = 2;
     ctx.fillStyle = `white`;
