@@ -44,7 +44,7 @@ app.get("/", (request, result) => {
             : dividers[Math.floor(Math.random() * dividers.length)];
     const num3 = Math.floor(Math.random() * 30) + 1;
     const equation =
-        Math.random() < 0.01 ? "9 + 10" : `${num1} / ${num2} + ${num3}`;
+        Math.random() < 0.021 ? "9 + 10" : `${num1} / ${num2} + ${num3}`;
     console.log(`equation: ${equation}`);
 
     const equationX = canvasWidth / 2 - ctx.measureText(equation).width / 2;
