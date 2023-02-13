@@ -9,13 +9,6 @@ const headerText = "Math challenge (99% fail):";
 const canvasWidth = 550;
 const canvasHeight = 200;
 
-//registerFont("font.ttf", { family: "impact" });
-
-app.get("/discordtest", (request, result) => {
-    console.log(request.headers);
-    result.redirect("/mathchallenge");
-});
-
 app.get("/mathchallenge", (request, result) => {
     const ua = request.headers["user-agent"];
     if (ua.includes("Discordbot")) {
@@ -24,8 +17,6 @@ app.get("/mathchallenge", (request, result) => {
     }
     const canvas = createCanvas(canvasWidth, canvasHeight);
     const ctx = canvas.getContext("2d");
-    console.log(request.headers);
-    console.log(request.baseUrl);
 
     //background =
     ctx.fillStyle = "white";
