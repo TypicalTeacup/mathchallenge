@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "canvas": "^2.11.0",
+    "@napi-rs/canvas": "^0.1.34",
     "express": "^4.18.2"
   },
   "devDependencies": {

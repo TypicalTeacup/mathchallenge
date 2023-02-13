@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
-const { createCanvas, registerFont, loadImage } = require("canvas");
+const { createCanvas,GlobalFonts } = require("@napi-rs/canvas");
+
+GlobalFonts.registerFromPath("font.ttf","impact")
+
 
 const headerText = "Math challenge (99% fail):";
 
 const canvasWidth = 550;
 const canvasHeight = 200;
 
-registerFont("font.ttf", { family: "impact" });
+//registerFont("font.ttf", { family: "impact" });
 
 app.get("/mathchallenge", (request, result) => {
     const canvas = createCanvas(canvasWidth, canvasHeight);
